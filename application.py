@@ -1,6 +1,6 @@
 from selenium.webdriver.firefox.webdriver import WebDriver
 
-class Application:
+class Application():
 
     def __init__(self):
         self.wd = WebDriver()
@@ -54,8 +54,9 @@ class Application:
         wd.find_element_by_xpath("//form[@id='LoginForm']/input[3]").click()
 
     def open_home_page(self):
+        wd = self.wd
         # open homepage
-        self.wd.get("http://localhost/addressbook/")
+        wd.get("http://localhost/addressbook/")
 
     def destroy(self):
         self.wd.quit()
