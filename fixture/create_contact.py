@@ -1,23 +1,11 @@
-from selenium.webdriver.firefox.webdriver import WebDriver
-from contact import Contact
+from model.contact import Contact
 
-class Application_contact():
-    def __init__(self):
-        self.wd = WebDriver()
-        self.wd.implicitly_wait(60)
-
-    def logout(self):
-        wd = self.wd
-        # logout
-        wd.find_element_by_link_text("Logout").click()
-
-    def submit_contact_creation(self):
-        wd = self.wd
-        # submit contact creation
-        wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
+class CreateContactHelper:
+    def __init__(self, app):
+        self.app = app
 
     def fill_contact_form(self, contact):
-        wd = self.wd
+        wd = self.app.wd
         # fill contact form
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
@@ -79,8 +67,13 @@ class Application_contact():
         wd.find_element_by_name("notes").clear()
         wd.find_element_by_name("notes").send_keys(contact.notes)
 
+    def submit_contact_creation(self):
+        wd = self.app.wd
+        # submit contact creation
+        wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
+
     def add_contact(self):
-        wd = self.wd
+        wd = self.app.wd
         # add contact
         wd.find_element_by_link_text("add new").click()
         self.fill_contact_form(Contact(firstname="Test", middlename="Tested", lastname="TestName", nickname="Tst",
@@ -89,26 +82,3 @@ class Application_contact():
                                            homepage="testhomepage.com",year="1976", address2="test city", phone2="test town",
                                            notes="test notes"))
         self.submit_contact_creation()
-
-    def login(self):
-        wd = self.wd
-        self.open_home_page()
-        # login
-        wd.find_element_by_name("pass").click()
-        wd.find_element_by_name("pass").send_keys("\\undefined")
-        wd.find_element_by_name("user").click()
-        wd.find_element_by_name("user").clear()
-        wd.find_element_by_name("user").send_keys("admin")
-        wd.find_element_by_name("pass").click()
-        wd.find_element_by_name("pass").clear()
-        wd.find_element_by_name("pass").send_keys("secret")
-        wd.find_element_by_xpath("//form[@id='LoginForm']/input[3]").click()
-
-    def open_home_page(self):
-        wd = self.wd
-        # open home page
-        wd.get("http://localhost/addressbook/")
-
-    def destroy_contact(self):
-        self.wd.quit()
-

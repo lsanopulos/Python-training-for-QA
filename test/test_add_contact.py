@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
-
 import pytest
-from application_contact import Application_contact
+from fixture.application_contact import Application_contact
 
 @pytest.fixture()
 def app_con(request):
@@ -11,8 +10,8 @@ def app_con(request):
 
 
 def test_test_add_contact(app_con):
-    app_con.login()
-    app_con.add_contact()
-    app_con.logout()
+    app_con.session_contact.login()
+    app_con.create_contact.add_contact()
+    app_con.session_contact.logout()
 
 
