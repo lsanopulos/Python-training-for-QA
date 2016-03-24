@@ -82,3 +82,28 @@ class CreateContactHelper:
                                            homepage="testhomepage.com",year="1976", address2="test city", phone2="test town",
                                            notes="test notes"))
         self.submit_contact_creation()
+
+    def delete_first_contact(self):
+        wd = self.app.wd
+        #select first contact
+        wd.find_element_by_name("selected[]").click()
+        #delete contact
+        wd.find_element_by_css_selector("input[value='Delete']").click()
+        wd.switch_to_alert().accept()
+
+    def edit_first_contact(self):
+        wd = self.app.wd
+        #select first contact
+        wd.find_element_by_name("selected[]").click()
+        #edit first contact
+        wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img").click()
+        self.fill_contact_form(Contact(firstname="Edit Test", middlename="Edit Tested", lastname="Edit TestName", nickname="Edit Tst",
+                                           title="Edit TestTitle", company="Edit TestCompany", address="Edit TestAddress", homePhone="1234123456",
+                                           mobilePhone="123478901234", workPhone="1234567890", fax="123412345678", email="edittest@testcompany.com",
+                                           homepage="edittesthomepage.com",year="1977", address2="edit test city", phone2="edit test town",
+                                           notes="edit test notes"))
+        #submit edition
+        wd.find_element_by_xpath("//div[@id='content']/form[1]/input[22]").click()
+        #return to home page
+        wd.find_element_by_link_text("home page").click()
+
