@@ -11,6 +11,7 @@ class Application():
         self.wd.implicitly_wait(60)
         self.session = SessionHelper(self)
         self.create_contact = CreateContactHelper(self)
+        self.group = GroupHelper(self)
 
     def open_home_page(self):
         wd = self.wd
