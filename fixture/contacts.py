@@ -41,7 +41,8 @@ class CreateContactHelper:
     def add_contact(self, contact):
         wd = self.app.wd
         # add contact
-        wd.find_element_by_link_text("add new").click()
+        if not (wd.current_url.endswith("/edit.php") and len(wd.find_elements_by_name("submit")) > 0):
+            wd.find_element_by_link_text("add new").click()
         self.fill_contact_form(contact)
         self.submit_contact_creation()
 
@@ -51,7 +52,6 @@ class CreateContactHelper:
             wd.find_element_by_name(field_name).click()
             wd.find_element_by_name(field_name).clear()
             wd.find_element_by_name(field_name).send_keys(text)
-
 
     def delete_first_contact(self):
         wd = self.app.wd

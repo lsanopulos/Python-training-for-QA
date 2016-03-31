@@ -23,7 +23,8 @@ class Application():
     def open_home_page(self):
         wd = self.wd
         # open homepage
-        wd.get("http://localhost/addressbook/")
+        if not (wd.current_url.endswith("addressbook/") and len(wd.find_element_by_xpath("//form[@id='LoginForm']/input[3]")) > 0):
+            wd.get("http://localhost/addressbook/")
 
     def destroy(self):
         self.wd.quit()
