@@ -1,5 +1,6 @@
 from model.contact import Contact
 
+
 class CreateContactHelper:
     def __init__(self, app):
         self.app = app
@@ -38,6 +39,10 @@ class CreateContactHelper:
         # submit contact creation
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
 
+    def return_to_home_page(self):
+        wd = self.app.wd
+        wd.find_element_by_link_text("home").click()
+
     def add_contact(self, contact):
         wd = self.app.wd
         # add contact
@@ -45,6 +50,7 @@ class CreateContactHelper:
             wd.find_element_by_link_text("add new").click()
         self.fill_contact_form(contact)
         self.submit_contact_creation()
+        self.return_to_home_page()
 
     def change_field_value(self, field_name, text):
         wd = self.app.wd
@@ -60,6 +66,7 @@ class CreateContactHelper:
         #delete contact
         wd.find_element_by_css_selector("input[value='Delete']").click()
         wd.switch_to_alert().accept()
+        self.return_to_home_page()
 
     def edit_first_contact(self, edit_contact):
         wd = self.app.wd
@@ -76,4 +83,15 @@ class CreateContactHelper:
     def count(self):
         wd = self.app.wd
         return len(wd.find_elements_by_name("selected[]"))
+
+    def get_contacts_list(self):
+        wd = self.app.wd
+        contacts = []
+        for element in wd.find_elements_by_name("entry"):
+            cells2 = element.find_element_by_xpath("./td[2]").text
+            cells3 = element.find_element_by_xpath("./td[3]").text
+            id = element.find_element_by_name("selected[]").get_attribute("value")
+            contacts.append(Contact(firstname= cells3, lastname = cells2, id = id))
+        return contacts
+
 
