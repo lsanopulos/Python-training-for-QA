@@ -61,21 +61,27 @@ class CreateContactHelper:
             wd.find_element_by_name(field_name).send_keys(text)
 
     def delete_first_contact(self):
+        self.delete_contact_by_index(0)
+
+    def delete_contact_by_index(self, index):
         wd = self.app.wd
-        #select first contact
-        wd.find_element_by_name("selected[]").click()
+        #select contact by index
+        wd.find_elements_by_name("selected[]")[index].click()
         #delete contact
         wd.find_element_by_css_selector("input[value='Delete']").click()
         wd.switch_to_alert().accept()
         self.return_to_home_page()
         self.contact_cache = None
 
-    def edit_first_contact(self, edit_contact):
+    def edit_first_contact(self):
+        self.edit_contact_by_index(0)
+
+    def edit_contact_by_index(self, index, edit_contact):
         wd = self.app.wd
-        #select first contact
-        wd.find_element_by_name("selected[]").click()
-        #edit first contact
-        wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img").click()
+        #select contact by index
+        wd.find_elements_by_name("selected[]")[index].click()
+        #edit contact
+        wd.find_elements_by_xpath("//img[@src='icons/pencil.png']/parent::a")[index].click()
         self.fill_contact_form(edit_contact)
         #submit edition
         wd.find_element_by_xpath("//div[@id='content']/form[1]/input[22]").click()
