@@ -1,4 +1,5 @@
 from model.contact import Contact
+import re
 
 
 class CreateContactHelper:
@@ -20,6 +21,8 @@ class CreateContactHelper:
         self.change_field_value("work", contact.workPhone)
         self.change_field_value("fax", contact.fax)
         self.change_field_value("email", contact.email)
+        self.change_field_value("email2", contact.email2)
+        self.change_field_value("email3", contact.email3)
         self.change_field_value("homepage", contact.homepage)
         if not wd.find_element_by_xpath("//div[@id='content']/form/select[1]//option[5]").is_selected():
             wd.find_element_by_xpath("//div[@id='content']/form/select[1]//option[5]").click()
@@ -78,8 +81,6 @@ class CreateContactHelper:
 
     def edit_contact_by_index(self, index, edit_contact):
         wd = self.app.wd
-        #select contact by index
-        wd.find_elements_by_name("selected[]")[index].click()
         #edit contact
         wd.find_elements_by_xpath("//img[@src='icons/pencil.png']/parent::a")[index].click()
         self.fill_contact_form(edit_contact)
@@ -100,10 +101,61 @@ class CreateContactHelper:
             wd = self.app.wd
             self.contact_cache = []
             for element in wd.find_elements_by_name("entry"):
-                cells2 = element.find_element_by_xpath("./td[2]").text
-                cells3 = element.find_element_by_xpath("./td[3]").text
+                cells = element.find_elements_by_tag_name("td")
+                cellLast = cells[1].text
+                cellFirst = cells[2].text
+                cellAddress = cells[3].text
                 id = element.find_element_by_name("selected[]").get_attribute("value")
-                self.contact_cache.append(Contact(firstname= cells3, lastname = cells2, id = id))
+                all_mails = cells[4].text
+                all_phones = cells[5].text
+                self.contact_cache.append(Contact(firstname= cellFirst, lastname = cellLast, id = id, address= cellAddress,
+                                                  all_mails_from_home_page = all_mails,
+                                                  all_phones_from_home_page = all_phones))
         return self.contact_cache
+
+    def open_contact_to_edit_by_index(self, index):
+        wd = self.app.wd
+        self.return_to_home_page()
+        #open contact to edit
+        wd.find_elements_by_xpath("//img[@src='icons/pencil.png']/parent::a")[index].click()
+
+    def get_contact_info_from_edit_page(self, index):
+        wd = self.app.wd
+        self.open_contact_to_edit_by_index(index)
+        firstname = wd.find_element_by_name("firstname").get_attribute("value")
+        lastname = wd.find_element_by_name("lastname").get_attribute("value")
+        id = wd.find_element_by_name("id").get_attribute("value")
+        address = wd.find_element_by_name("address").get_attribute("value")
+        homephone = wd.find_element_by_name("home").get_attribute("value")
+        mobilephone = wd.find_element_by_name("mobile").get_attribute("value")
+        workphone = wd.find_element_by_name("work").get_attribute("value")
+        phone2 = wd.find_element_by_name("phone2").get_attribute("value")
+        email = wd.find_element_by_name("email").get_attribute("value")
+        email2 = wd.find_element_by_name("email2").get_attribute("value")
+        email3 = wd.find_element_by_name("email3").get_attribute("value")
+        return Contact (firstname=firstname, lastname=lastname, id=id, address=address,
+                        homePhone=homephone, mobilePhone=mobilephone, workPhone=workphone, phone2=phone2,
+                        email=email, email2=email2, email3=email3)
+
+    def open_contact_view_page_by_index(self, index):
+        wd = self.app.wd
+        self.return_to_home_page()
+        #open contact to detail
+        wd.find_elements_by_xpath("//img[@src='icons/status_online.png']/parent::a")[index].click()
+
+
+    def get_contacts_from_view_page(self, index):
+        wd = self.app.wd
+        self.open_contact_view_page_by_index(index)
+        text = wd.find_element_by_id("content").text
+        homephone = re.search("H: (.*)", text).group(1)
+        mobilephone = re.search("M: (.*)", text).group(1)
+        workphone = re.search("W: (.*)", text).group(1)
+        phone2 = re.search("P: (.*)", text).group(1)
+        return Contact (homePhone=homephone, mobilePhone=mobilephone, workPhone=workphone, phone2=phone2)
+
+
+
+
 
 
