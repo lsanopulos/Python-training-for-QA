@@ -2,6 +2,7 @@ import pytest
 import json
 import os.path
 import importlib
+import jsonpickle
 from fixture.application import Application
 
 fixture = None
@@ -47,6 +48,9 @@ def pytest_generate_tests(metafunc):
 def load_from_module(module):
     return importlib.import_module("data.%s" % module).testdata
 
-#def load_from_json(file):
+def load_from_json(file):
+    with open (os.path.join(os.path.dirname(os.path.abspath(__file__)), "data/%s.json" % file)) as f:
+        return jsonpickle.decode(f.read())
+
 
 
