@@ -154,6 +154,29 @@ class CreateContactHelper:
         phone2 = re.search("P: (.*)", text).group(1)
         return Contact (homePhone=homephone, mobilePhone=mobilephone, workPhone=workphone, phone2=phone2)
 
+    def delete_contact_by_id(self, id):
+        wd = self.app.wd
+        #select contact by id
+        wd.find_element_by_css_selector("input[value = '%s']" % id).click()
+        #delete contact
+        wd.find_element_by_css_selector("input[value='Delete']").click()
+        wd.switch_to_alert().accept()
+        self.return_to_home_page()
+        self.contact_cache = None
+
+    def edit_contact_by_id(self, id, edit_contact):
+        wd = self.app.wd
+        #edit contact
+        #wd.find_elements_by_xpath("//img[@src='icons/pencil.png']/parent::a")[index].click()
+        wd.get("http://localhost/addressbook/edit.php?id=%s" % id)
+        self.fill_contact_form(edit_contact)
+        #submit edition
+        wd.find_element_by_xpath("//div[@id='content']/form[1]/input[22]").click()
+        #return to home page
+        wd.find_element_by_link_text("home page").click()
+        self.contact_cache = None
+
+
 
 
 
