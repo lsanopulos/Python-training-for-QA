@@ -8,7 +8,7 @@ def test_test_add_contact(app, db):
     contact = random.choice(old_contacts)
     #index = randrange(len(old_contacts))
     con = Contact(firstname="New Test", id=contact.id)
-    #con.id = old_contacts[index].id
+    #con = old_contacts[index]
     #index = int(contact.id)
     #app.contacts.edit_contact_by_index(index, con)
     app.contacts.edit_contact_by_id(contact.id, con)
