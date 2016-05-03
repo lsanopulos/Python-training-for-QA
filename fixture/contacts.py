@@ -166,15 +166,41 @@ class CreateContactHelper:
 
     def edit_contact_by_id(self, id, edit_contact):
         wd = self.app.wd
+        self.index = []
         #edit contact
         #wd.find_elements_by_xpath("//img[@src='icons/pencil.png']/parent::a")[index].click()
         wd.get("http://localhost/addressbook/edit.php?id=%s" % id)
+        #another way
+        '''for element in wd.find_elements_by_name("entry"):
+            ind = element.find_element_by_name("selected[]").get_attribute("value")
+            self.index.append(ind)
+        for i in range(len(self.index)):
+            if self.index[i] == id:
+                wd.find_elements_by_xpath("//img[@src='icons/pencil.png']/parent::a")[i].click()'''
         self.fill_contact_form(edit_contact)
         #submit edition
         wd.find_element_by_xpath("//div[@id='content']/form[1]/input[22]").click()
         #return to home page
         wd.find_element_by_link_text("home page").click()
-        self.contact_cache = None
+        self.index = None
+
+    def add_contact_to_group(self, id):
+        wd = self.app.wd
+        wd.find_element_by_id("%s" % id).click()
+        if not wd.find_element_by_xpath("//div[@class='right']/select//option[12]").is_selected():
+            wd.find_element_by_xpath("//div[@class='right']/select//option[12]").click()
+        wd.find_element_by_name("add").click()
+        self.return_to_home_page()
+
+    def delete_contact_from_group(self, id):
+        wd = self.app.wd
+        if not wd.find_element_by_xpath("//form[@id='right']/select//option[14]").is_selected():
+            wd.find_element_by_xpath("//form[@id='right']/select//option[14]").click()
+        #if not wd.find_element_by_id("192").is_selected():
+        #    wd.find_element_by_id("192").click()
+        wd.find_element_by_id("%s" % id).click()
+        wd.find_element_by_name("remove").click()
+        self.return_to_home_page()
 
 
 
