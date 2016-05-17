@@ -1,0 +1,50 @@
+<ns0:test-suite xmlns:ns0="urn:model.allure.qatools.yandex.ru" start="1463481232450" stop="1463481252627">
+  <name>bdd.group_scenarios</name>
+  <test-cases>
+    <test-case start="1463481232450" status="passed" stop="1463481250097">
+      <name>test_add_new_group[name1-header1-footer1]</name>
+      <description>groups.feature: Add new group</description>
+      <attachments/>
+      <steps/>
+      <labels>
+        <label name="severity" value="normal"/>
+        <label name="thread" value="6952-MainThread"/>
+        <label name="host" value="WINCTRL-3KJ6TVU"/>
+      </labels>
+    </test-case>
+    <test-case start="1463481250097" status="passed" stop="1463481250847">
+      <name>test_add_new_group[name2-header2-footer2]</name>
+      <description>groups.feature: Add new group</description>
+      <attachments/>
+      <steps/>
+      <labels>
+        <label name="severity" value="normal"/>
+        <label name="thread" value="6952-MainThread"/>
+        <label name="host" value="WINCTRL-3KJ6TVU"/>
+      </labels>
+    </test-case>
+    <test-case start="1463481250847" status="passed" stop="1463481251527">
+      <name>test_delete_group</name>
+      <description>groups.feature: Delete a group</description>
+      <attachments/>
+      <steps/>
+      <labels>
+        <label name="severity" value="normal"/>
+        <label name="thread" value="6952-MainThread"/>
+        <label name="host" value="WINCTRL-3KJ6TVU"/>
+      </labels>
+    </test-case>
+    <test-case start="1463481251527" status="passed" stop="1463481252627">
+      <name>test_modify_group</name>
+      <description>groups.feature: Modify a group</description>
+      <attachments/>
+      <steps/>
+      <labels>
+        <label name="severity" value="normal"/>
+        <label name="thread" value="6952-MainThread"/>
+        <label name="host" value="WINCTRL-3KJ6TVU"/>
+      </labels>
+    </test-case>
+  </test-cases>
+  <labels/>
+</ns0:test-suite>
