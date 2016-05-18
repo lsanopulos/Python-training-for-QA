@@ -1,4 +1,4 @@
-E:\Devel\Python-training-for-QA\pytest-2.9.0-py2.py3-none-any.whl
+E:\pytest-2.9.0
 pytest_bdd
 selenium
 jsonpickle
