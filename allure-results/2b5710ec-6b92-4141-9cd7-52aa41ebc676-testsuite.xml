@@ -1,0 +1,150 @@
+<ns0:test-suite xmlns:ns0="urn:model.allure.qatools.yandex.ru" start="1463651428663" stop="1463651442525">
+  <name>bdd.group_scenarios</name>
+  <labels/>
+  <test-cases>
+    <test-case start="1463651428663" status="passed" stop="1463651439482">
+      <description>groups.feature: Add new group</description>
+      <name>test_add_new_group[name1-header1-footer1]</name>
+      <steps>
+        <step start="1463651428700" status="passed" stop="1463651428716">
+          <name>Given a group list</name>
+          <title>Given a group list</title>
+          <steps/>
+          <attachments/>
+        </step>
+        <step start="1463651428717" status="passed" stop="1463651428718">
+          <name>Given a group with name=name1, header=header1 and footer=footer1</name>
+          <title>Given a group with name=name1, header=header1 and footer=footer1</title>
+          <steps/>
+          <attachments/>
+        </step>
+        <step start="1463651437889" status="passed" stop="1463651439446">
+          <name>When I add the group to the list</name>
+          <title>When I add the group to the list</title>
+          <steps/>
+          <attachments/>
+        </step>
+        <step start="1463651439447" status="passed" stop="1463651439478">
+          <name>then the new group list is equal to the old list with the edit group</name>
+          <title>then the new group list is equal to the old list with the edit group</title>
+          <steps/>
+          <attachments/>
+        </step>
+      </steps>
+      <attachments/>
+      <labels>
+        <label name="severity" value="normal"/>
+        <label name="thread" value="7236-MainThread"/>
+        <label name="host" value="WINCTRL-3KJ6TVU"/>
+      </labels>
+    </test-case>
+    <test-case start="1463651439489" status="passed" stop="1463651440518">
+      <description>groups.feature: Add new group</description>
+      <name>test_add_new_group[name2-header2-footer2]</name>
+      <steps>
+        <step start="1463651439495" status="passed" stop="1463651439517">
+          <name>Given a group list</name>
+          <title>Given a group list</title>
+          <steps/>
+          <attachments/>
+        </step>
+        <step start="1463651439518" status="passed" stop="1463651439518">
+          <name>Given a group with name=name2, header=header2 and footer=footer2</name>
+          <title>Given a group with name=name2, header=header2 and footer=footer2</title>
+          <steps/>
+          <attachments/>
+        </step>
+        <step start="1463651439621" status="passed" stop="1463651440481">
+          <name>When I add the group to the list</name>
+          <title>When I add the group to the list</title>
+          <steps/>
+          <attachments/>
+        </step>
+        <step start="1463651440482" status="passed" stop="1463651440515">
+          <name>then the new group list is equal to the old list with the edit group</name>
+          <title>then the new group list is equal to the old list with the edit group</title>
+          <steps/>
+          <attachments/>
+        </step>
+      </steps>
+      <attachments/>
+      <labels>
+        <label name="severity" value="normal"/>
+        <label name="thread" value="7236-MainThread"/>
+        <label name="host" value="WINCTRL-3KJ6TVU"/>
+      </labels>
+    </test-case>
+    <test-case start="1463651440523" status="passed" stop="1463651441371">
+      <description>groups.feature: Delete a group</description>
+      <name>test_delete_group</name>
+      <steps>
+        <step start="1463651440676" status="passed" stop="1463651440723">
+          <name>Given a non-empty group list</name>
+          <title>Given a non-empty group list</title>
+          <steps/>
+          <attachments/>
+        </step>
+        <step start="1463651440724" status="passed" stop="1463651440724">
+          <name>Given a random group from the list</name>
+          <title>Given a random group from the list</title>
+          <steps/>
+          <attachments/>
+        </step>
+        <step start="1463651440725" status="passed" stop="1463651441340">
+          <name>When I delete the group 57:New group:header9k k3FSzU Cw  e  :footerS80y from the list</name>
+          <title>When I delete the group 57:New group:header9k k3FSzU Cw  e  :footerS80y from the list</title>
+          <steps/>
+          <attachments/>
+        </step>
+        <step start="1463651441342" status="passed" stop="1463651441368">
+          <name>Then the new group list is equal to the old group list without the deleted group</name>
+          <title>Then the new group list is equal to the old group list without the deleted group</title>
+          <steps/>
+          <attachments/>
+        </step>
+      </steps>
+      <attachments/>
+      <labels>
+        <label name="severity" value="normal"/>
+        <label name="thread" value="7236-MainThread"/>
+        <label name="host" value="WINCTRL-3KJ6TVU"/>
+      </labels>
+    </test-case>
+    <test-case start="1463651441375" status="passed" stop="1463651442525">
+      <description>groups.feature: Modify a group</description>
+      <name>test_modify_group</name>
+      <steps>
+        <step start="1463651441486" status="passed" stop="1463651441536">
+          <name>Given a non-empty group list</name>
+          <title>Given a non-empty group list</title>
+          <steps/>
+          <attachments/>
+        </step>
+        <step start="1463651441538" status="passed" stop="1463651441538">
+          <name>Given a random group from the list</name>
+          <title>Given a random group from the list</title>
+          <steps/>
+          <attachments/>
+        </step>
+        <step start="1463651441539" status="passed" stop="1463651442502">
+          <name>When I modify the group from the list</name>
+          <title>When I modify the group from the list</title>
+          <steps/>
+          <attachments/>
+        </step>
+        <step start="1463651442503" status="passed" stop="1463651442523">
+          <name>Then the new group list is equal to the old group list</name>
+          <title>Then the new group list is equal to the old group list</title>
+          <steps/>
+          <attachments/>
+        </step>
+      </steps>
+      <attachments/>
+      <labels>
+        <label name="severity" value="normal"/>
+        <label name="thread" value="7236-MainThread"/>
+        <label name="host" value="WINCTRL-3KJ6TVU"/>
+      </labels>
+    </test-case>
+  </test-cases>
+</ns0:test-suite>
