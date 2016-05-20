@@ -8,3 +8,4 @@ pymysql
 E:\Devel\mysql-connector-python-2.0.4.zip
 E:\Devel\Python-training-for-QA\lxml-3.4.4-cp35-none-win_amd64.whl
 pytest-allure-adaptor
+robotframework-python3

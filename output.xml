@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generated="20160519 16:10:22.408" generator="Robot 2.9 (Python 3.5.1 on win32)">
+<suite name="Group Scenarios" id="s1" source="E:\Devel\Python-training-for-QA\rf\group_scenarios.robot">
+<kw name="Init Fixtures" library="rf.AddressBook" type="setup">
+<status status="PASS" endtime="20160519 16:10:32.379" starttime="20160519 16:10:22.988"></status>
+</kw>
+<test name="Add new group" id="s1-t1">
+<kw name="Get Group List" library="rf.AddressBook">
+<assign>
+<var>${old_list}</var>
+</assign>
+<msg timestamp="20160519 16:10:32.423" level="INFO">${old_list} = [3:New group:test group:test group, 6:test group:test group:test group, 11:New group:test group:test group, 12:New group::, 13:Modified group:test group:test group, 15:New group:test group:test group,...</msg>
+<status status="PASS" endtime="20160519 16:10:32.423" starttime="20160519 16:10:32.389"></status>
+</kw>
+<kw name="New Group" library="rf.AddressBook">
+<arguments>
+<arg>name1</arg>
+<arg>header1</arg>
+<arg>footer1</arg>
+</arguments>
+<assign>
+<var>${group}</var>
+</assign>
+<msg timestamp="20160519 16:10:32.442" level="INFO">${group} = None:name1:header1:footer1</msg>
+<status status="PASS" endtime="20160519 16:10:32.443" starttime="20160519 16:10:32.440"></status>
+</kw>
+<kw name="Create Group" library="rf.AddressBook">
+<arguments>
+<arg>${group}</arg>
+</arguments>
+<status status="PASS" endtime="20160519 16:10:34.570" starttime="20160519 16:10:32.445"></status>
+</kw>
+<kw name="Get Group List" library="rf.AddressBook">
+<assign>
+<var>${new_list}</var>
+</assign>
+<msg timestamp="20160519 16:10:34.618" level="INFO">${new_list} = [3:New group:test group:test group, 6:test group:test group:test group, 11:New group:test group:test group, 12:New group::, 13:Modified group:test group:test group, 15:New group:test group:test group,...</msg>
+<status status="PASS" endtime="20160519 16:10:34.618" starttime="20160519 16:10:34.580"></status>
+</kw>
+<kw name="Append To List" library="Collections">
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<arguments>
+<arg>${old_list}</arg>
+<arg>${group}</arg>
+</arguments>
+<status status="PASS" endtime="20160519 16:10:34.622" starttime="20160519 16:10:34.620"></status>
+</kw>
+<kw name="Group Lists Should Be Equal" library="rf.AddressBook">
+<arguments>
+<arg>${new_list}</arg>
+<arg>${old_list}</arg>
+</arguments>
+<status status="PASS" endtime="20160519 16:10:34.622" starttime="20160519 16:10:34.622"></status>
+</kw>
+<status status="PASS" endtime="20160519 16:10:34.622" starttime="20160519 16:10:32.380" critical="yes"></status>
+</test>
+<test name="Delete group" id="s1-t2">
+<kw name="Get Group List" library="rf.AddressBook">
+<assign>
+<var>${old_list}</var>
+</assign>
+<msg timestamp="20160519 16:10:34.662" level="INFO">${old_list} = [3:New group:test group:test group, 6:test group:test group:test group, 11:New group:test group:test group, 12:New group::, 13:Modified group:test group:test group, 15:New group:test group:test group,...</msg>
+<status status="PASS" endtime="20160519 16:10:34.662" starttime="20160519 16:10:34.632"></status>
+</kw>
+<kw name="Get Length" library="BuiltIn">
+<doc>Returns and logs the length of the given item as an integer.</doc>
+<arguments>
+<arg>${old_list}</arg>
+</arguments>
+<assign>
+<var>${length}</var>
+</assign>
+<msg timestamp="20160519 16:10:34.689" level="INFO">Length is 134</msg>
+<msg timestamp="20160519 16:10:34.690" level="INFO">${length} = 134</msg>
+<status status="PASS" endtime="20160519 16:10:34.690" starttime="20160519 16:10:34.686"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>random.randrange (len(${length}))</arg>
+<arg>random</arg>
+</arguments>
+<assign>
+<var>${index}</var>
+</assign>
+<msg timestamp="20160519 16:10:34.724" level="FAIL">Evaluating expression 'random.randrange (len(134))' failed: TypeError: object of type 'int' has no len()</msg>
+<status status="FAIL" endtime="20160519 16:10:34.724" starttime="20160519 16:10:34.693"></status>
+</kw>
+<status status="FAIL" endtime="20160519 16:10:34.724" starttime="20160519 16:10:34.632" critical="yes">Evaluating expression 'random.randrange (len(134))' failed: TypeError: object of type 'int' has no len()</status>
+</test>
+<kw name="Destroy Fixtures" library="rf.AddressBook" type="teardown">
+<status status="PASS" endtime="20160519 16:10:35.006" starttime="20160519 16:10:34.734"></status>
+</kw>
+<status status="FAIL" endtime="20160519 16:10:35.006" starttime="20160519 16:10:22.418"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="1">Critical Tests</stat>
+<stat pass="1" fail="1">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" id="s1" name="Group Scenarios" fail="1">Group Scenarios</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
